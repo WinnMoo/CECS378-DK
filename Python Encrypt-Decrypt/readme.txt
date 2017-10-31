@@ -1,0 +1,4 @@
+- Both of the keys are located in the key folder
+- The testcode.txt file is example code that was used to test the encrypt/decrypt
+- The image file is the one I encrypted/decrypted
+- Code seems to run slow/crash if a file is too large
