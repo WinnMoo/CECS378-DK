@@ -23,10 +23,10 @@ def MyfileEncrypt(filepath):
     #Creating the ciphertext
         ct = encryptor.update(padded_BAstring) + encryptor.finalize()
     #Getting file extension
-        ext = filepath[-4:]
+        name, ext = os.path.splitext(filepath)
         return ct, iv, key, ext 
 
-def MyfileDecrypt(ct, iv, key, saveFilepath):
+def MyfileDecrypt(ct, iv, key, ext):
     #Re-creating cipher
         cipher = Cipher(algorithms.AES(key), modes.CBC(iv), default_backend())
     #Creating decryptor
@@ -37,7 +37,9 @@ def MyfileDecrypt(ct, iv, key, saveFilepath):
         unpadder = padding.PKCS7(256).unpadder()
         data = unpadder.update(originalByteFile)
         originalUnpaddedString = data + unpadder.finalize()
-    #Saving picture to specified location
-        f = open(saveFilepath, "wb")
+    #Saving file to specified location
+        savefilePath = "C://Users//Kevin//Desktop//test"
+        savefilePath += ext
+        f = open(savefilePath, "wb")
         f.write(bytearray(originalUnpaddedString))
         f.close()
